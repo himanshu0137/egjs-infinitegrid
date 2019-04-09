@@ -119,6 +119,7 @@ class InfiniteGrid extends Component {
 	public static VERSION = "#__VERSION__#";
 
 	public options: IInfiniteGridOptions;
+	public beforeCacheRendering: Function = (t: any) => void 0;
 	private _loadingBar: {
 		append?: HTMLElement,
 		prepend?: HTMLElement,
@@ -955,7 +956,15 @@ class InfiniteGrid extends Component {
 			}
 			return !isConstantSize && item.rect.top < DUMMY_POSITION / 10;
 		});
-
+		this.beforeCacheRendering({
+			fromCache,
+			groups: cache,
+			items,
+			newItems,
+			isAppend,
+			isTrusted,
+			moveItem,
+		});
 		this._postLayout({
 			fromCache,
 			groups: cache,

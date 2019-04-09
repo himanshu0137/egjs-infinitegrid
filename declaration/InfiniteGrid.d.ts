@@ -15,6 +15,7 @@ export interface IInfiniteGridOptions {
 declare class InfiniteGrid extends Component {
     static VERSION: string;
     options: IInfiniteGridOptions;
+    beforeCacheRendering: Function;
     private _loadingBar;
     private _items;
     private _renderer;
